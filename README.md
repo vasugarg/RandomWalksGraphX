@@ -8,11 +8,23 @@ Random Walks on Graphx using Pregel
 
 This project contains a Spark application that uses the GraphX library to perform a random walk on graphs using the Pregel API. The application performs dynamic matching of vertex values during the random walk process.
 
+Video Link: https://youtu.be/SCRUelYObEw
+The video explains deployment of hadoop application in AWS EMR Cluster and the project structure
+
 ## Prerequisites
 
+- JDK 8
 - Apache Spark 3.4.0 or above
 - Scala 2.13.x
 - SBT (Scala Build Tool)
+
+### Running the test cases
+
+Test Files can be found under the directory src/test
+
+````
+sbt clean compile test
+````
 
 ### Running the project
 
@@ -77,6 +89,9 @@ The project comprises the following key components:
 - **Sending Messages**: After the vertex program, messages are generated for the next iteration. In the context of our random walks, the vertices send messages along their outgoing edges to propagate the walk.
 
 - **Message Combiner**: Messages destined for the same vertex are combined to streamline processing. For our random walk, this might involve merging paths or matcher values.
+
+## Logging
+We are using custom log4j.properties under src/main/resources to redirect the logs for the spark application to logs/ folder. Make sure to create the folder if not already present
 
 ## Conclusion
 
