@@ -1,6 +1,6 @@
 package Utilz
 
-import org.slf4j.Logger
+//import org.slf4j.Logger
 import org.yaml.snakeyaml.Yaml
 import software.amazon.awssdk.regions.Region
 import software.amazon.awssdk.services.s3.S3Client
@@ -25,10 +25,10 @@ case class Edges(
                 )
 
 object yamlParser {
-  val logger: Logger = CreateLogger(this.getClass)
+  //val logger: Logger = CreateLogger(this.getClass)
 
   def parseYaml(filename: String): (Nodes, Edges) = {
-    logger.info("Started parsing the YAML file")
+    //logger.info("Started parsing the YAML file")
 
     if (filename.startsWith("s3:")) {
       val s3UriParts = filename.stripPrefix("s3://").split("/")
@@ -57,7 +57,7 @@ object yamlParser {
         val yamlStr = new String(yamlBytes, "UTF-8").replaceAll("\t", "    ")
 
         val yaml = new Yaml()
-        logger.info("Loading the YAML data to JSON")
+        //logger.info("Loading the YAML data to JSON")
         val data = yaml.load(yamlStr).asInstanceOf[JMap[String, JMap[String, Any]]]
 
         val nodesData = data.get("Nodes").asScala.toMap
@@ -84,7 +84,7 @@ object yamlParser {
       val yamlStr = Source.fromFile(filename).mkString.replaceAll("\t", "    ")
 
       val yaml = new Yaml()
-      logger.info("Loading the YAML data to JSON")
+      //logger.info("Loading the YAML data to JSON")
       val data = yaml.load(yamlStr).asInstanceOf[JMap[String, JMap[String, Any]]]
 
       val nodesData = data.get("Nodes").asScala.toMap

@@ -43,9 +43,14 @@ object AttackHandler {
         }
       }
     }
+    val averageSize = resultMap.map(_.size).sum.toDouble / resultMap.length
+    val attackRatio: Double = (successfulAttackCounter + failedAttackCounter).toDouble / resultMap.length
     // Print or return your counters here if you need to
+    logger.info(s"Total Number of Random Walks: ${resultMap.length}")
+    logger.info(s"Average length of a Random Walk: ${averageSize}")
     logger.info(s"Successful Attacks: $successfulAttackCounter")
     logger.info(s"Failed Attacks: $failedAttackCounter")
+    logger.info(s"Attacking Ratio: ${attackRatio}")
   }
 }
 

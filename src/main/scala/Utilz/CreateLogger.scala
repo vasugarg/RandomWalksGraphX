@@ -5,7 +5,7 @@ import scala.util.{Failure, Success, Try}
 
 object CreateLogger {
   def apply[T](class4Logger: Class[T]): Logger = {
-    val LOGBACKXML = "logback.xml"
+    val LOGBACKXML = "test.xml"
     val logger = LoggerFactory.getLogger(class4Logger.getName)
     
     Try(Option(class4Logger.getClassLoader.getResourceAsStream(LOGBACKXML))) match {

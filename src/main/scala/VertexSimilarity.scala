@@ -1,15 +1,20 @@
 package cs441.HW2
 
 import GraphXUtilz.GraphLoader.{VertexData, loadGraph}
-import Utilz.CreateLogger
 import com.typesafe.config.{Config, ConfigFactory}
-import org.slf4j.Logger
+import org.apache.log4j.{Level, LogManager}
+
 
 object VertexSimilarity {
+  val logger = LogManager.getRootLogger
+  logger.setLevel(Level.INFO)
+  logger.setLevel(Level.WARN)
+  logger.setLevel(Level.DEBUG)
+  logger.setLevel(Level.ERROR)
   val config: Config = ConfigFactory.load("application.conf")
-  val logger: Logger = CreateLogger(classOf[Main.type])
 
-  val (vertexArray, edgeArray) = loadGraph(config.getString("RandomWalksGraphX.FilePaths.originalGraphFilePath")) // Loads the original Graph
+  logger.info("Loading the Original Graph")
+  val (vertexArray, edgeArray) = loadGraph(config.getString("RandomWalksGraphX.FilePathsLocal.originalGraphPath")) // Loads the original Graph
   val valuableNodes: Seq[VertexData] = vertexArray.filter(_.valuableData)
 
   def calcMaxSimilarity(vertex: VertexData): List[(Int, Double)] = {

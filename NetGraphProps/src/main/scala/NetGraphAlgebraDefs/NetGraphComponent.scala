@@ -1,5 +1,4 @@
 package NetGraphAlgebraDefs
-
 trait NetGraphComponent extends Serializable
 
 @SerialVersionUID(123L)
